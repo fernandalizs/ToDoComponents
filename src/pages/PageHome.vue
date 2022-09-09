@@ -7,21 +7,10 @@
       <TarefaList msg="ToDo List" :tasks="listaDeTarefas" />
     </div>
     <div v-show="exibir.form">
-      <h2>Cadastrar tarefa</h2>
-      <input
-        type="text"
-        name="title"
-        id="title"
-        placeholder="Entre com a tarefa"
-        v-model="form.title"
-      />
-      <input
-        type="text"
-        name="project"
-        v-model="form.project"
-        placeholder="Entre com o projeto"
-      />
-      <button class="btn" @click="salvarTarefa">Salvar</button>
+      <TarefaForm
+        :titulo="form.titulo"
+        @salvarClick="recebiSalvar"
+      ></TarefaForm>
     </div>
     <div v-show="exibir.lista" style="padding: 20px">
       <button class="btn" @click="mostrarCadastro">Adicionar</button>
@@ -32,10 +21,12 @@
 <script>
 import TasksApi from "../TasksApi.js";
 import TarefaList from "../components/TarefaList.vue";
+import TarefaForm from "../components/TarefaForm.vue";
 
 export default {
   components: {
     TarefaList,
+    TarefaForm,
   },
   data: () => {
     return {
@@ -61,17 +52,10 @@ export default {
       this.exibir.form = true;
       this.exibir.lista = false;
     },
-    salvarTarefa() {
+    recebiSalvar() {
       this.exibir.form = false;
       this.exibir.lista = true;
-      const novaTarefa = {
-        title: this.form.title,
-        project: this.form.project,
-        date: new Date().toLocaleDateString("pt"),
-      };
-      TasksApi.createTask(novaTarefa, () => {
-        this.listarTarefas();
-      });
+      this.listarTarefas();
     },
   },
   created() {
