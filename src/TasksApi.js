@@ -11,4 +11,9 @@ export default {
       .post("http://localhost:3000/tasks/", task)
       .then((response) => callback(response.data));
   },
+  deleteTask: (task, callback) => {
+    axios
+      .delete(`http://localhost:3000/tasks/${task.id}`)
+      .then((response) => callback(response.data));
+  },
 };

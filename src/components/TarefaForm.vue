@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Cadastrar tarefa</h2>
+    <h2>{{ titulo }}</h2>
     <input
       type="text"
       name="title"
@@ -18,10 +18,8 @@
   </div>
 </template>
 <script>
-import TasksApi from "../TasksApi.js";
-
 export default {
-  props: [],
+  props: ["titulo"],
   data: () => {
     return {
       listaDeTarefas: [],
@@ -44,9 +42,7 @@ export default {
         project: this.form.project,
         date: new Date().toLocaleDateString("pt"),
       };
-      TasksApi.createTask(novaTarefa, () => {
-        this.$emit("salvarClick");
-      });
+      this.$emit("salvarClick", novaTarefa);
     },
   },
 };

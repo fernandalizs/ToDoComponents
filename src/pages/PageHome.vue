@@ -36,8 +36,7 @@ export default {
         form: false,
       },
       form: {
-        title: "",
-        project: "",
+        titulo: "Cadastrar Tarefa",
       },
     };
   },
@@ -47,16 +46,20 @@ export default {
         this.listaDeTarefas = data;
       });
     },
-
     mostrarCadastro() {
       this.exibir.form = true;
       this.exibir.lista = false;
     },
-    recebiSalvar() {
-      this.exibir.form = false;
-      this.exibir.lista = true;
-      this.listarTarefas();
+    recebiSalvar(novaTarefa) {
+      TasksApi.createTask(novaTarefa, () => {
+        this.exibir.form = false;
+        this.exibir.lista = true;
+        this.listarTarefas();
+      });
     },
+    // deletarTarefa() {
+    //   axios.delete()
+    // }
   },
   created() {
     this.listarTarefas();
