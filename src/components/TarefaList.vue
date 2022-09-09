@@ -1,8 +1,13 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <ul>
-      <li v-for="task in tasks" :key="task.id">{{ task }}</li>
+    <ul class="collection">
+      <li v-for="task in tasks" :key="task.id" class="collection-item">
+        <h5>
+          {{ task.title }}
+          <span class="task-badge right-align">{{ task.project }}</span>
+        </h5>
+      </li>
     </ul>
   </div>
 </template>
@@ -18,4 +23,13 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.task-badge {
+  background-color: #929292;
+  color: white;
+  padding: 6px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  vertical-align: middle;
+}
+</style>
