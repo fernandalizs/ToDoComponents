@@ -13,7 +13,14 @@ export default {
   },
   deleteTask: (task, callback) => {
     axios
-      .delete(`http://localhost:3000/tasks/${task.id}`)
+      .delete(`http://localhost:3000/tasks/${task}`)
       .then((response) => callback(response.data));
   },
+  // updateTasks: (task, callback) => {
+  //   axios
+  //     .patch(`http://localhost:3000/tasks/${task.id}`, task)
+  //     .then((response) => {
+  //       callback(response.data);
+  //     });
+  // },
 };

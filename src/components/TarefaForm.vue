@@ -14,7 +14,9 @@
       v-model="form.project"
       placeholder="Entre com o projeto"
     />
-    <button class="btn" @click="salvarTarefa">Salvar</button>
+    <button class="btn deep-purple lighten-2" @click="salvarTarefa">
+      Salvar
+    </button>
   </div>
 </template>
 <script>

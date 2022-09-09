@@ -1,16 +1,6 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "title": "Tarefa 1",
-      "project": "Estudos"
-    },
-    {
-      "id": 2,
-      "title": "Tarefa 2",
-      "project": "Trabalho"
-    },
-    {
       "title": "sim",
       "project": "sim",
       "date": "09/09/2022",
@@ -21,6 +11,12 @@
       "project": "nao",
       "date": "09/09/2022",
       "id": 4
+    },
+    {
+      "title": "Nova tarefa",
+      "project": "Trabalho",
+      "date": "09/09/2022",
+      "id": 5
     }
   ]
 }

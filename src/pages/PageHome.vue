@@ -1,10 +1,14 @@
 <template>
   <div id="app">
-    <nav class="orange">
+    <nav class="deep-purple lighten-2">
       <div class="nav-wrapper"></div>
     </nav>
     <div v-show="exibir.lista">
-      <TarefaList msg="ToDo List" :tasks="listaDeTarefas" />
+      <TarefaList
+        msg="ToDo List"
+        :tasks="listaDeTarefas"
+        @deletarClick="recebiDeletar"
+      />
     </div>
     <div v-show="exibir.form">
       <TarefaForm
@@ -13,7 +17,9 @@
       ></TarefaForm>
     </div>
     <div v-show="exibir.lista" style="padding: 20px">
-      <button class="btn" @click="mostrarCadastro">Adicionar</button>
+      <button class="btn deep-purple lighten-2" @click="mostrarCadastro">
+        Adicionar
+      </button>
     </div>
   </div>
 </template>
@@ -57,9 +63,13 @@ export default {
         this.listarTarefas();
       });
     },
-    // deletarTarefa() {
-    //   axios.delete()
-    // }
+    recebiDeletar(taskID) {
+      TasksApi.deleteTask(taskID, () => {
+        this.exibir.form = false;
+        this.exibir.lista = true;
+        this.listarTarefas();
+      });
+    },
   },
   created() {
     this.listarTarefas();
