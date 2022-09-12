@@ -8,7 +8,10 @@
           <span class="task-badge right-align">{{ task.project }}</span>
         </h5>
         <div class="simbolos">
-          <i class="fa-solid fa-pen-to-square editar"></i>
+          <i
+            class="fa-solid fa-pen-to-square editar"
+            @click="$emit('editarClick', task.id)"
+          ></i>
           <i
             class="fa-solid fa-trash lixo"
             @click="$emit('deletarClick', task.id)"
@@ -47,9 +50,11 @@ export default {
   color: #fa5151;
   font-size: 2rem;
   padding-left: 1%;
+  cursor: pointer;
 }
 .editar {
   color: #0062ff;
   font-size: 2rem;
+  cursor: pointer;
 }
 </style>

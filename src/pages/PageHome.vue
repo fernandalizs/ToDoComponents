@@ -8,6 +8,7 @@
         msg="ToDo List"
         :tasks="listaDeTarefas"
         @deletarClick="recebiDeletar"
+        @editarClick="recebiEditar"
       />
     </div>
     <div v-show="exibir.form">
@@ -68,6 +69,13 @@ export default {
         this.exibir.form = false;
         this.exibir.lista = true;
         this.listarTarefas();
+      });
+    },
+    recebiEditar(taskID) {
+      TasksApi.updateTask(taskID, () => {
+        this.exibir.botao;
+        this.exibir.form = true;
+        this.exibir.lista = false;
       });
     },
   },

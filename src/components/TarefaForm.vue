@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>{{ titulo }}</h2>
+    <h2>{{ exibir.titulo }}</h2>
     <input
       type="text"
       name="title"
@@ -15,7 +15,7 @@
       placeholder="Entre com o projeto"
     />
     <button class="btn deep-purple lighten-2" @click="salvarTarefa">
-      Salvar
+      {{ exibir.botao }}
     </button>
   </div>
 </template>
@@ -28,6 +28,8 @@ export default {
       exibir: {
         lista: true,
         form: false,
+        titulo: "Adicionar Tarefa",
+        botao: "Salvar",
       },
       form: {
         title: "",
@@ -45,6 +47,11 @@ export default {
         date: new Date().toLocaleDateString("pt"),
       };
       this.$emit("salvarClick", novaTarefa);
+    },
+    editarTarefa() {
+      this.exibir.titulo = "Editar Tarefa";
+      this.exibir.botao = "Editar";
+      this.$emit("editarClick");
     },
   },
 };
