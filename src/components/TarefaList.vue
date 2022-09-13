@@ -10,7 +10,7 @@
         <div class="simbolos">
           <i
             class="fa-solid fa-pen-to-square editar"
-            @click="$emit('editarClick', task.id)"
+            @click="editarClick(task.id)"
           ></i>
           <i
             class="fa-solid fa-trash lixo"
@@ -28,6 +28,11 @@ export default {
   props: {
     msg: String,
     tasks: Array,
+  },
+  methods: {
+    editarClick(tarefaId) {
+      this.$emit("editarClick", tarefaId);
+    },
   },
 };
 </script>

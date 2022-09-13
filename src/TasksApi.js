@@ -6,6 +6,11 @@ export default {
       callback(response.data);
     });
   },
+  getTask: (taskID, callback) => {
+    axios.get(`http://localhost:3000/tasks/${taskID}`).then((response) => {
+      callback(response.data);
+    });
+  },
   createTask: (task, callback) => {
     axios
       .post("http://localhost:3000/tasks/", task)

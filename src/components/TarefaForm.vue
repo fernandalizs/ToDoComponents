@@ -1,36 +1,38 @@
 <template>
   <div>
-    <h2>{{ exibir.titulo }}</h2>
+    <h2>{{ titulo }}</h2>
     <input
       type="text"
       name="title"
       id="title"
       placeholder="Entre com a tarefa"
-      v-model="form.title"
+      :value="title"
+      @input="form.title = $event.target.value"
     />
     <input
       type="text"
       name="project"
-      v-model="form.project"
+      :value="project"
+      @input="form.project = $event.target.value"
       placeholder="Entre com o projeto"
     />
     <button class="btn deep-purple lighten-2" @click="salvarTarefa">
-      {{ exibir.botao }}
+      {{ btn }}
     </button>
   </div>
 </template>
 <script>
 export default {
-  props: ["titulo"],
+  props: ["titulo", "title", "id", "project", "btn"],
   data: () => {
     return {
-      listaDeTarefas: [],
-      exibir: {
-        lista: true,
-        form: false,
-        titulo: "Adicionar Tarefa",
-        botao: "Salvar",
-      },
+      //   //   listaDeTarefas: [],
+      //   exibir: {
+      //     //   lista: true,
+      //     //   form: false,
+      //     // titulo: "Adicionar Tarefa",
+      //     //   botao: "Salvar",
+      //   },
       form: {
         title: "",
         project: "",
@@ -39,19 +41,25 @@ export default {
   },
   methods: {
     salvarTarefa() {
-      this.exibir.form = false;
-      this.exibir.lista = true;
       const novaTarefa = {
         title: this.form.title,
         project: this.form.project,
-        date: new Date().toLocaleDateString("pt"),
       };
-      this.$emit("salvarClick", novaTarefa);
+      if (this.btn == "Adicionar") {
+        novaTarefa.date = new Date().toLocaleDateString("pt");
+        this.$emit("salvarClick", novaTarefa);
+      } else {
+        novaTarefa.id = this.id;
+        this.$emit("alterarClick", novaTarefa);
+      }
     },
-    editarTarefa() {
-      this.exibir.titulo = "Editar Tarefa";
-      this.exibir.botao = "Editar";
-      this.$emit("editarClick");
+  },
+  watch: {
+    title(newvalue) {
+      this.form.title = newvalue;
+    },
+    project(newvalue) {
+      this.form.project = newvalue;
     },
   },
 };
